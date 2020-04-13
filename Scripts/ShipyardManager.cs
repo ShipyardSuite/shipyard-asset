@@ -27,7 +27,7 @@ public class ShipyardManager : ShipyardSDK.SingletonPersistent<ShipyardManager>
 	// Start is called before the first frame update
 	void Awake()
 	{
-		online = Connection.OnlineState();
+		online = Connection.OnlineState;
 	}
 
 	// Update is called once per frame

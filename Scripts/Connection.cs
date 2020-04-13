@@ -11,16 +11,20 @@ namespace ShipyardSDK
 	{
 		public static string apiURL = "http://localhost:3069/connection/api/";
 
-        public static bool OnlineState()
+        public static bool OnlineState
         {
-			if (Application.internetReachability == NetworkReachability.NotReachable)
-			{
-				return false;
+            get
+            {
+				if (Application.internetReachability == NetworkReachability.NotReachable)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
 			}
-			else
-			{
-				return true;
-			}
+			
 		}
 
 		public static IEnumerator GetRequest(string path, System.Action<JSONNode> callback)
