@@ -1,8 +1,6 @@
-using UnityEngine;
+﻿using SimpleJSON;
 
-using SimpleJSON;
-
-namespace ShipyardSDK
+namespace ShipyardClient
 {
 	public class Parser
 	{

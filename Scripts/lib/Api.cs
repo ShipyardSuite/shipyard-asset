@@ -1,32 +1,17 @@
-﻿    using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
 using SimpleJSON;
 
-namespace ShipyardSDK
+namespace ShipyardClient
 {
-	public class Connection : MonoBehaviour
-	{
-		public static string apiURL = "http://localhost:3069/connection/api/";
+    public class Api : MonoBehaviour
+    {
+        public static string apiURL = "http://localhost:3069/connection/api/";
 
-        public static bool OnlineState
-        {
-            get
-            {
-				if (Application.internetReachability == NetworkReachability.NotReachable)
-				{
-					return false;
-				}
-				else
-				{
-					return true;
-				}
-			}
-			
-		}
-
+		//GetRequest
 		public static IEnumerator GetRequest(string path, System.Action<JSONNode> callback)
 		{
 			UnityWebRequest www = UnityWebRequest.Get(apiURL + path);
@@ -46,6 +31,7 @@ namespace ShipyardSDK
 			}
 		}
 
+		//PostRequest
 		public static IEnumerator PostRequest(string path, string body, System.Action<JSONNode> callback)
 		{
 			var data = new Dictionary<string, string> { { "query", body } };
@@ -67,17 +53,7 @@ namespace ShipyardSDK
 			}
 		}
 
-        public static IEnumerator DownloadImage(string MediaUrl, System.Action<DownloadHandlerTexture> callback)
-		{
-
-			UnityWebRequest request = UnityWebRequestTexture.GetTexture(MediaUrl);
-			yield return request.SendWebRequest();
-			if (request.isNetworkError || request.isHttpError)
-				Debug.Log(request.error);
-			else
-				//YourRawImage.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
-                callback((DownloadHandlerTexture)request.downloadHandler);
-		}
+		//PutRequest
+		//DeleteRequest
 	}
-
 }
